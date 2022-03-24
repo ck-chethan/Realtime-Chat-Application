@@ -38,7 +38,11 @@ const SignUp = () => {
       return
     }
 
-    if (pics.type === 'image/jpg' || pics.type === 'image/png') {
+    if (
+      pics.type === 'image/jpg' ||
+      pics.type === 'image/png' ||
+      pics.type === 'image/jpeg'
+    ) {
       const data = new FormData()
       data.append('file', pics)
       data.append('upload_preset', 'chat-app')
@@ -115,7 +119,7 @@ const SignUp = () => {
       })
       localStorage.setItem('userInfo', JSON.stringify(data))
       setLoading(false)
-      history.pushState('/chats')
+      history.push('/chats')
     } catch (error) {
       toast({
         title: 'Error Occured',
