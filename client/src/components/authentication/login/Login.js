@@ -24,6 +24,7 @@ const Login = () => {
         <FormLabel>Email</FormLabel>
         <Input
           placeholder="Enter Your Email"
+          type={'email'}
           onChange={(e) => setEmail(e.target.value)}
         ></Input>
       </FormControl>
