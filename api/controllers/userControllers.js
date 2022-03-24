@@ -37,4 +37,22 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 })
 
-module.exports = { registerUser }
+const authUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body
+
+  const user = await User.findOne({ email })
+  if (user && (await user.matchPassword(password))) {
+    res.json({
+      _id: user.id,
+      name: user.name,
+      email: user.email,
+      pic: user.pic,
+      token: generateToken(user.id),
+    })
+  } else {
+    res.status(400)
+    throw new Error('Failed to login the user')
+  }
+})
+
+module.exports = { registerUser, authUser }
