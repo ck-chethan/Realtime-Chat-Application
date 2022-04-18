@@ -12,15 +12,16 @@ import {
 import '../homePage/homePage.css'
 import Login from '../../components/authentication/login/Login'
 import Signup from '../../components/authentication/signup/Signup'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Homepage = () => {
-  const history = useHistory()
+  const history = useNavigate()
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('userInfo'))
+    console.log(user)
     if (user) {
-      history.push('/chats')
+      history('/chats')
     }
   }, [history])
 
