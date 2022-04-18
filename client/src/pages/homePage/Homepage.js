@@ -19,7 +19,6 @@ const Homepage = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('userInfo'))
-    console.log(user)
     if (user) {
       history('/chats')
     }
