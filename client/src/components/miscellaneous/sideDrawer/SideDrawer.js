@@ -19,31 +19,33 @@ import {
   useToast,
 } from '@chakra-ui/react'
 import { BellIcon, ChevronDownIcon } from '@chakra-ui/icons'
+import { Spinner } from '@chakra-ui/spinner'
+
 import React, { useState } from 'react'
-import './sideDrawer.css'
 import { ChatState } from '../../../context/ChatProvider'
 import ProfileModal from '../profileModal/ProfileModal'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import ChatLoading from '../../chatLoading/ChatLoading'
 import UserListItem from '../../userAvatar/UserListItem'
+import './sideDrawer.css'
 
 const SideDrawer = () => {
   const history = useNavigate()
-  const { user, setSelectedChat, chats, setChats } = ChatState()
+  const { user, selectedChat, setSelectedChat, chats, setChats } = ChatState()
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const [search, setSearch] = useState('')
   const [searchResult, setSearchResult] = useState([])
   const [loading, setLoading] = useState(false)
-  const [loadingChat, setLoadingChat] = useState()
+  const [loadingChat, setLoadingChat] = useState(false)
+
+  const toast = useToast()
 
   const logoutHandler = () => {
     localStorage.removeItem('userInfo')
     history('/')
   }
-
-  const toast = useToast()
 
   const handleSearch = async () => {
     if (!search) {
@@ -178,6 +180,7 @@ const SideDrawer = () => {
                 />
               ))
             )}
+            {loadingChat && <Spinner ml="auto" d="flex" />}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
