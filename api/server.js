@@ -25,6 +25,6 @@ app.use(errorHandler)
 
 const PORT = process.env.PORT
 
-app.listen(8000, () => {
+app.listen(PORT, () => {
   console.log(`Server Listenining on port ${PORT}`.yellow.bold)
 })
