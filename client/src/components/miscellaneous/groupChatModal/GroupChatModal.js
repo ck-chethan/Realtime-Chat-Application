@@ -60,7 +60,8 @@ const GroupChatModal = ({ children }) => {
     }
   }
   const handleSubmit = () => {
-    if (!groupChatName || !selectedUsers) {
+    console.log(selectedUsers)
+    if (!groupChatName || !selectedUsers.length > 0) {
       toast({
         title: 'Please fill all the fields',
         status: 'warning',

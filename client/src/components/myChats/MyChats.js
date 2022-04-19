@@ -37,6 +37,7 @@ const MyChats = ({ fetchAgain }) => {
   useEffect(() => {
     setLoggedUser(JSON.parse(localStorage.getItem('userInfo')))
     fetchChats()
+    // eslint-disable-next-line
   }, [fetchAgain])
 
   return (
@@ -81,30 +82,31 @@ const MyChats = ({ fetchAgain }) => {
         borderRadius={'lg'}
         overflowY="hidden"
       >
-        {chats ? (
-          <Stack overflowY={'scroll'}>
-            {chats.map((chat) => (
-              <Box
-                onClick={() => setSelectedChat(chat)}
-                cursor="pointer"
-                bg={selectedChat === chat ? '#38B2AC' : '#E8E8E8'}
-                color={selectedChat === chat ? 'white' : 'black'}
-                px={3}
-                py={3}
-                borderRadius={'lg'}
-                key={chat._id}
-              >
-                <Text>
-                  {!chat.isGroupChat
-                    ? getSender(loggedUser, chat.users)
-                    : chat.chatName}
-                </Text>
-              </Box>
-            ))}
-          </Stack>
-        ) : (
-          <ChatLoading />
-        )}
+        {chats.length > 0 &&
+          (chats ? (
+            <Stack overflowY={'scroll'}>
+              {chats.map((chat) => (
+                <Box
+                  onClick={() => setSelectedChat(chat)}
+                  cursor="pointer"
+                  bg={selectedChat === chat ? '#38B2AC' : '#E8E8E8'}
+                  color={selectedChat === chat ? 'white' : 'black'}
+                  px={3}
+                  py={3}
+                  borderRadius={'lg'}
+                  key={chat._id}
+                >
+                  <Text>
+                    {!chat.isGroupChat
+                      ? getSender(loggedUser, chat.users)
+                      : chat.chatName}
+                  </Text>
+                </Box>
+              ))}
+            </Stack>
+          ) : (
+            <ChatLoading />
+          ))}
       </Box>
     </Box>
   )
