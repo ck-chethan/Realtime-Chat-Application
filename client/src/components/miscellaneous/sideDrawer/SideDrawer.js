@@ -17,9 +17,9 @@ import {
   Tooltip,
   useDisclosure,
   useToast,
+  Spinner,
 } from '@chakra-ui/react'
 import { BellIcon, ChevronDownIcon } from '@chakra-ui/icons'
-import { Spinner } from '@chakra-ui/spinner'
 
 import React, { useState } from 'react'
 import { ChatState } from '../../../context/ChatProvider'
