@@ -45,7 +45,6 @@ const GroupChatModal = ({ children }) => {
         },
       }
       const { data } = await axios.get(`/api/user?search=${search}`, config)
-      console.log(data)
       setLoading(false)
       setSearchResult(data)
     } catch (error) {
@@ -60,7 +59,6 @@ const GroupChatModal = ({ children }) => {
     }
   }
   const handleSubmit = () => {
-    console.log(selectedUsers)
     if (!groupChatName || !selectedUsers.length > 0) {
       toast({
         title: 'Please fill all the fields',
@@ -168,11 +166,11 @@ const GroupChatModal = ({ children }) => {
             ) : (
               searchResult
                 ?.slice(0, 4)
-                .map((user) => (
+                .map((u) => (
                   <UserListItem
-                    key={user._id}
-                    user={user}
-                    handleFunction={() => handleGroup(user)}
+                    key={u._id}
+                    user={u}
+                    handleFunction={() => handleGroup(u)}
                   />
                 ))
             )}
